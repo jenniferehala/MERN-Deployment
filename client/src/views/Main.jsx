@@ -15,10 +15,7 @@ const Main = (props) => {
             .catch(err => console.log(err))
     }, [])
 
-    const onLikeHandler = (_id, arrIndex) => {
-        console.log(_id);
-        console.log(arrIndex);
-    }
+    
 
 
 
@@ -44,7 +41,6 @@ const Main = (props) => {
                     pets.map((pet, i) => {
                         return (
                             <>
-                            {/* <SinglePet onLikeHandler={()=>onLikeHandler(pet._id, i)}/> */}
                             <tbody key={i}>
                                 <tr>
                                     <td> {pet.name} </td>

@@ -33,3 +33,9 @@ module.exports.updateOnePet = (req, res) => {
         .then(results=>res.json({results: results}))
         .catch(err=>res.status(400).json({message: "that didn't quite work.", err}));
 }
+
+module.exports.upvotePet=(req,res) => {
+    Pets.findOneAndUpdate({_id:req.params._id}, {$inc: {score:1}})
+    .then(results=>res.json({results: results}))
+    .catch(err=>res.status(400).json({message: "that didn't quite work.", err}));
+}

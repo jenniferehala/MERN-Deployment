@@ -6,10 +6,9 @@ import { useHistory, Link } from 'react-router-dom';
 
 const SinglePet = (props) => {
 
-    const [pets, setPets] = useState({})
+    const [pets, setPets] = useState([])
     const { _id } = useParams({})
     const history = useHistory();
-    console.log(_id)
 
     const { removeFromDom } = props;
 
@@ -17,7 +16,7 @@ const SinglePet = (props) => {
         axios.get(`http://localhost:8000/api/pets/${_id}`)
             .then(res => setPets(res.data.results))
             .catch(err => console.error(err));
-    }, []);
+    }, [pets]);
 
     const deletePet = (_id) => {
         console.log("did this run?")
@@ -29,6 +28,15 @@ const SinglePet = (props) => {
             .catch(err => console.error(err));
     }
 
+    const onLikeHandler = (e) => {
+        console.log("hello");
+        axios.patch(`http://localhost:8000/api/pets/${_id}/upvote`)
+            .then(res => {
+                // window.location.reload();
+            })
+            .catch(err => console.error.apply(err));
+
+    }
 
     return (
         <div>
@@ -44,7 +52,7 @@ const SinglePet = (props) => {
                 <p><b>Description:</b> {pets.description}</p>
             </div>
 
-            <button onClick={props.onLikeHandler}>Like {pets.name}</button>
+            <button onClick={onLikeHandler}>Like {pets.name}</button>
             <p> {pets.score} like(s)</p>
 
             <br />

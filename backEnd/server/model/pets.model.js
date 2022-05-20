@@ -14,7 +14,11 @@ const PetsSchema = new mongoose.Schema({
         minLength: [3, "you need at least 3 character!!"]
     },
 
-    score: Number,
+    score: {
+        type: Number,
+        required: [true, "you need a number!"],
+        min: 0
+    },
     
     skill1: String,
     skill2: String,

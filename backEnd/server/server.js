@@ -8,10 +8,10 @@ app.use(cors());
 //     res.json({message:"hey its me, the server"});
 // })
 
-require("./server/config/mongoose.config");
+require("./config/mongoose.config");
 
 app.use(express.json(), express.urlencoded({extended:true}));
 
-require("./server/routes/pets.routes")(app);
+require("./routes/pets.routes")(app);
 
 app.listen(port, ()=>console.log(`running on port ${port} is a new way to be!`))
